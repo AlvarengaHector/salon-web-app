@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadoCreateDlg" widgetVar="EmpleadoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmpleadoTitle}">
+            <h:form id="EmpleadoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmpleadoLabel_idEmpleado}" for="idEmpleado" />
+                        <p:inputText id="idEmpleado" value="#{empleadoController.selected.idEmpleado}" title="#{bundle.CreateEmpleadoTitle_idEmpleado}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_idEmpleado}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadoLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{empleadoController.selected.codigo}" title="#{bundle.CreateEmpleadoTitle_codigo}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadoLabel_fkServicio}" for="fkServicio" />
+                        <p:selectOneMenu id="fkServicio" value="#{empleadoController.selected.fkServicio}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fkServicio}">
+                            <f:selectItems value="#{servicioController.itemsAvailableSelectOne}"
+                                           var="fkServicioItem"
+                                           itemValue="#{fkServicioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpleadoLabel_fkPersona}" for="fkPersona" />
+                        <p:selectOneMenu id="fkPersona" value="#{empleadoController.selected.fkPersona}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fkPersona}">
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="fkPersonaItem"
+                                           itemValue="#{fkPersonaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpleadoLabel_fkHorario}" for="fkHorario" />
+                        <p:selectOneMenu id="fkHorario" value="#{empleadoController.selected.fkHorario}" required="true" requiredMessage="#{bundle.EditEmpleadoRequiredMessage_fkHorario}">
+                            <f:selectItems value="#{horarioController.itemsAvailableSelectOne}"
+                                           var="fkHorarioItem"
+                                           itemValue="#{fkHorarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadoController.create}" value="#{bundle.Save}" update="display,:EmpleadoListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmpleadoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpleadoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
