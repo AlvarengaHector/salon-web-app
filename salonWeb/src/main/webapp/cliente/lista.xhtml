@@ -6,49 +6,45 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <body>
+    <ui:composition template="/publicTemplate.xhtml">
 
-        <ui:composition template="./../publicTemplate.xhtml">
+        <ui:define name="content">
+             <p:dataTable id="datalist" value="#{usuarioController.items}" var="item"
+                widgetVar="usersTable"
+                filteredValue="#{usuarioController.items}"
+                selectionMode="single" selection="#{usuarioController.selected}"
+                paginator="true"
+                rowKey="#{item.idUs}"
+                rows="10"
+                rowsPerPageTemplate="10,20,30,40,50"
+                >
+                <f:facet name="header">
+                    <p:outputPanel>
+                        <h:outputText value="Buscar en todos los registros:" />
+                        <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Buscar"/>
+                    </p:outputPanel>
+                </f:facet>
+                <p:column headerText="Usuario" filterBy="#{item.usuario}">
+                    <h:outputText value="#{item.usuario}" />
+                </p:column>
 
-            <ui:define name="content">
-                 <p:dataTable id="datalist" value="#{usuarioController.items}" var="item"
-                    widgetVar="usersTable"
-                    filteredValue="#{usuarioController.items}"
-                    selectionMode="single" selection="#{usuarioController.selected}"
-                    paginator="true"
-                    rowKey="#{item.idUs}"
-                    rows="10"
-                    rowsPerPageTemplate="10,20,30,40,50"
-                    >
-                    <f:facet name="header">
-                        <p:outputPanel>
-                            <h:outputText value="Buscar en todos los registros:" />
-                            <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Buscar"/>
-                        </p:outputPanel>
-                    </f:facet>
-                    <p:column headerText="Usuario" filterBy="#{item.usuario}">
-                        <h:outputText value="#{item.usuario}" />
-                    </p:column>
+                <p:column headerText="Password">
+                    <h:outputText value="#{item.password}" />
+                </p:column>
 
-                    <p:column headerText="Password">
-                        <h:outputText value="#{item.password}" />
-                    </p:column>
+                <p:column headerText="Rol">
+                    <h:outputText value="#{item.fkRol}" />
+                </p:column>
 
-                    <p:column headerText="Rol">
-                        <h:outputText value="#{item.fkRol}" />
-                    </p:column>
+                <p:column headerText="Estado">
+                    <h:outputText value="#{item.estado}" />
+                </p:column>
+            </p:dataTable>
+        </ui:define>
 
-                    <p:column headerText="Estado">
-                        <h:outputText value="#{item.estado}" />
-                    </p:column>
-                </p:dataTable>
-            </ui:define>
+        <ui:define name="bottom">
+            bottom
+        </ui:define>
 
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
-
-        </ui:composition>
-
-    </body>
+    </ui:composition>
 </html>
