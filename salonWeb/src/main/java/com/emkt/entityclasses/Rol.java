@@ -120,7 +120,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Rol[ idRol=" + idRol + " ]";
+        return "com.emkt.entityclasses.Rol[ idRol=" + idRol + " ]";
     }
     
 }

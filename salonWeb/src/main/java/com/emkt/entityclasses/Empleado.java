@@ -141,7 +141,7 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Empleado[ idEmpleado=" + idEmpleado + " ]";
+        return "com.emkt.entityclasses.Empleado[ idEmpleado=" + idEmpleado + " ]";
     }
     
 }

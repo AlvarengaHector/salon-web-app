@@ -153,7 +153,7 @@ public class Horario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Horario[ idHorario=" + idHorario + " ]";
+        return "com.emkt.entityclasses.Horario[ idHorario=" + idHorario + " ]";
     }
     
 }

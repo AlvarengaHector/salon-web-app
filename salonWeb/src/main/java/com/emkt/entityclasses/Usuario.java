@@ -162,7 +162,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Usuario[ idUs=" + idUs + " ]";
+        return "com.emkt.entityclasses.Usuario[ idUs=" + idUs + " ]";
     }
     
 }

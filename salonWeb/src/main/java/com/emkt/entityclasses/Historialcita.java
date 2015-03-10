@@ -85,7 +85,7 @@ public class Historialcita implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Historialcita[ idHc=" + idHc + " ]";
+        return "com.emkt.entityclasses.Historialcita[ idHc=" + idHc + " ]";
     }
     
 }

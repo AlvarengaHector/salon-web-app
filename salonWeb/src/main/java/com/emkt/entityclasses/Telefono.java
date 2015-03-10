@@ -119,7 +119,7 @@ public class Telefono implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Telefono[ idTel=" + idTel + " ]";
+        return "com.emkt.entityclasses.Telefono[ idTel=" + idTel + " ]";
     }
     
 }

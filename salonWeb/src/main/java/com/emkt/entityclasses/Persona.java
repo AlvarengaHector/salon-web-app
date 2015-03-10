@@ -185,7 +185,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Persona[ idPer=" + idPer + " ]";
+        return "com.emkt.entityclasses.Persona[ idPer=" + idPer + " ]";
     }
     
 }

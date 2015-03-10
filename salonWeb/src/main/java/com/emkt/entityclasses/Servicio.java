@@ -126,7 +126,7 @@ public class Servicio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Servicio[ idServicio=" + idServicio + " ]";
+        return "com.emkt.entityclasses.Servicio[ idServicio=" + idServicio + " ]";
     }
     
 }

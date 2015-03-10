@@ -143,7 +143,7 @@ public class Cita implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Cita[ idCita=" + idCita + " ]";
+        return "com.emkt.entityclasses.Cita[ idCita=" + idCita + " ]";
     }
     
 }

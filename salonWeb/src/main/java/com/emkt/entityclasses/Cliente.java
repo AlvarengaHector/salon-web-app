@@ -119,7 +119,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.emkt.salonweb.Cliente[ idCliente=" + idCliente + " ]";
+        return "com.emkt.entityclasses.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }
