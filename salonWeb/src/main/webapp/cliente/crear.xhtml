@@ -20,7 +20,8 @@
                     <p:inputText value="#{clienteController.apellido}" id="apellido" required="true"/>
                     <h:message for="apellido"/>
                     <h:outputLabel value="Fecha de Nacimiento" for="fnacimiento"/>
-                    <p:inputText value="#{clienteController.fnacimiento}" id="fnacimiento" required="true"/>
+                    <p:outputLabel for="popup" value="Popup:" />
+                    <p:calendar id="popup" value="#{calendarView.date2}" />
                     <h:message for="fnacimiento"/>
                     <h:outputLabel value="Tipo de Teléfono" for="tipoTelefono"/>
                     <p:selectOneMenu value="#{clienteController.tipoTel}" id="tipoTelefono" required="true">
