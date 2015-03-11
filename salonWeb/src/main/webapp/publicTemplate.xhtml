@@ -14,15 +14,19 @@
     </h:head>
 
     <h:body>
+        
+        <p:growl id="growl" showDetail="true" sticky="true" />
 
         <div id="top">
             <ui:insert name="top">
                 <p>algún slider o algo parecido</p>
-                <p:menubar autoDisplay="true" class="main-menu" >
-                    <p:menuitem value="Home" outcome="/index.xhtml" icon="ui-icon-home" />
-                    <p:menuitem value="Crear nuevo cliente" outcome="/cliente/crear.xhtml" icon="ui-icon-document" />
-                    <p:menuitem value="Buscar cliente" outcome="/cliente/lista.xhtml" icon="ui-icon-search" />
-                </p:menubar>
+                <h:form>
+                    <p:menubar autoDisplay="true" class="main-menu" >
+                        <p:menuitem value="Home" outcome="/index.xhtml" icon="ui-icon-home" />
+                        <p:menuitem value="Crear nuevo cliente" outcome="/cliente/crear.xhtml" icon="ui-icon-document" />
+                        <p:menuitem value="Buscar cliente" outcome="/cliente/lista.xhtml" icon="ui-icon-search" />
+                    </p:menubar>
+                </h:form>
             </ui:insert>
         </div>
 

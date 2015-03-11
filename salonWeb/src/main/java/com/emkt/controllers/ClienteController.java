@@ -4,16 +4,18 @@ import com.emkt.entityclasses.Cliente;
 import com.emkt.entityclasses.Persona;
 import com.emkt.entityclasses.Telefono;
 import com.emkt.sessionbeans.ClienteFacade;
+import com.emkt.sessionbeans.PersonaFacade;
+import com.emkt.sessionbeans.TelefonoFacade;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @Named("clienteController")
-@SessionScoped
+@ViewScoped
 public class ClienteController implements Serializable {
 
     @EJB
@@ -104,9 +106,30 @@ public class ClienteController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ClienteFacade getFacade() {
+    public ClienteFacade getClienteFacade() {
         return clienteFacade;
     }
+
+    public void setClienteFacade(ClienteFacade clienteFacade) {
+        this.clienteFacade = clienteFacade;
+    }
+
+    public PersonaFacade getPersonaFacade() {
+        return personaFacade;
+    }
+
+    public void setPersonaFacade(PersonaFacade personaFacade) {
+        this.personaFacade = personaFacade;
+    }
+
+    public TelefonoFacade getTelefonoFacade() {
+        return telefonoFacade;
+    }
+
+    public void setTelefonoFacade(TelefonoFacade telefonoFacade) {
+        this.telefonoFacade = telefonoFacade;
+    }
+    
 
     public void create() {
         Cliente c = new Cliente();
@@ -119,9 +142,10 @@ public class ClienteController implements Serializable {
         p.setFnacimiento(fnacimiento);
         t.setTipo(tipoTel);
         t.setNumero(numeroTel);
+
         telefonoFacade.create(t);
         personaFacade.create(p);
-        clienteFacade.create(c);
+        clienteFacade.create(c);        
     }
 
     public void update() {
@@ -134,21 +158,21 @@ public class ClienteController implements Serializable {
 
     public List<Cliente> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = getClienteFacade().findAll();
         }
         return items;
     }
 
     public Cliente getCliente(java.lang.Integer id) {
-        return getFacade().find(id);
+        return getClienteFacade().find(id);
     }
 
     public List<Cliente> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+        return getClienteFacade().findAll();
     }
 
     public List<Cliente> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+        return getClienteFacade().findAll();
     }
 
     /* @FacesConverter(forClass = Cliente.class)
