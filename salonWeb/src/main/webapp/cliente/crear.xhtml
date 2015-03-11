@@ -9,6 +9,7 @@
 
         <ui:define name="content">
             <h:form id="form-cliente" >
+                <h:panelGroup  id="display">  
                 <h:panelGrid columns="3">
                     <h:outputLabel value="Código" for="codigo"/>
                     <p:inputText value="#{clienteController.codigo}" id="codigo" required="true"/>
@@ -37,11 +38,9 @@
                     <p:inputText value="#{clienteController.correo}" id="correo" required="true"/>
                     <h:message for="correo"/>
                     <h:panelGroup/>
-                    <h:commandButton action="#{clienteController.create()}" value="Crear"/>
-                    
-                    
+                    <p:commandButton actionListener="#{clienteController.create}" value="Crear" update="display,:form-cliente,:growl"/>
                 </h:panelGrid>
-
+              </h:panelGroup>
             </h:form>
             <p:growl id="growl" showDetail="true" sticky="true" />  
         </ui:define>
