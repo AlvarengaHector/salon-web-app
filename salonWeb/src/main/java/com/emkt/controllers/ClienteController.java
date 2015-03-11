@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.faces.bean.ViewScoped;
 
 @Named("clienteController")
 @ViewScoped
@@ -20,7 +20,9 @@ public class ClienteController implements Serializable {
 
     @EJB
     private com.emkt.sessionbeans.ClienteFacade clienteFacade;
+    @EJB
     private com.emkt.sessionbeans.PersonaFacade personaFacade;
+    @EJB
     private com.emkt.sessionbeans.TelefonoFacade telefonoFacade;
     private List<Cliente> items = null;
     private Cliente selected;
@@ -132,20 +134,25 @@ public class ClienteController implements Serializable {
     
 
     public void create() {
-        Cliente c = new Cliente();
-        Persona p = new Persona();
         Telefono t = new Telefono();
-        c.setCodigo(codigo);
+        
+        t.setNumero(numeroTel);
+        t.setTipo(tipoTel);
+        telefonoFacade.create(t);
+        
+        Persona p = new Persona();
+        
         p.setNombre(nombre);
         p.setApellido(apellido);
         p.setCorreo(correo);
         p.setFnacimiento(fnacimiento);
-        t.setTipo(tipoTel);
-        t.setNumero(numeroTel);
-
-        telefonoFacade.create(t);
         personaFacade.create(p);
+        
+        Cliente c = new Cliente();
+        
+        c.setCodigo(codigo);
         clienteFacade.create(c);        
+        
     }
 
     public void update() {

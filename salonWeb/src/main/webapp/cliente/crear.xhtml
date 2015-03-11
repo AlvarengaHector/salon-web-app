@@ -35,7 +35,7 @@
                         <h:outputLabel value="Correo" for="correo"/>
                         <p:inputText value="#{clienteController.correo}" id="correo" />
                         <h:panelGroup/>
-                        <p:commandButton actionListener="#{clienteController.create}" value="Crear" update="display"/>
+                        <p:commandButton action="#{clienteController.create}" value="Crear" update="display"/>
                     </h:panelGrid>
                 </h:panelGroup>
             </h:form>  
