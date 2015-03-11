@@ -20,7 +20,6 @@
                     <p:inputText value="#{clienteController.apellido}" id="apellido" required="true"/>
                     <h:message for="apellido"/>
                     <h:outputLabel value="Fecha de Nacimiento" for="fnacimiento"/>
-                    <p:outputLabel for="popup" value="Popup:" />
                     <p:calendar id="popup" value="#{calendarView.date2}" />
                     <h:message for="fnacimiento"/>
                     <h:outputLabel value="Tipo de Teléfono" for="tipoTelefono"/>
@@ -44,6 +43,7 @@
                 </h:panelGrid>
 
             </h:form>
+            <p:growl id="growl" showDetail="true" sticky="true" />  
         </ui:define>
 
         <ui:define name="bottom">

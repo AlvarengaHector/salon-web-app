@@ -1,6 +1,8 @@
 package com.emkt.controllers;
 
 import com.emkt.entityclasses.Cliente;
+import com.emkt.entityclasses.Persona;
+import com.emkt.entityclasses.Telefono;
 import com.emkt.sessionbeans.ClienteFacade;
 
 import java.io.Serializable;
@@ -15,7 +17,9 @@ import javax.enterprise.context.SessionScoped;
 public class ClienteController implements Serializable {
 
     @EJB
-    private com.emkt.sessionbeans.ClienteFacade ejbFacade;
+    private com.emkt.sessionbeans.ClienteFacade clienteFacade;
+    private com.emkt.sessionbeans.PersonaFacade personaFacade;
+    private com.emkt.sessionbeans.TelefonoFacade telefonoFacade;
     private List<Cliente> items = null;
     private Cliente selected;
     // mis variables
@@ -101,11 +105,23 @@ public class ClienteController implements Serializable {
     }
 
     private ClienteFacade getFacade() {
-        return ejbFacade;
+        return clienteFacade;
     }
 
     public void create() {
-        
+        Cliente c = new Cliente();
+        Persona p = new Persona();
+        Telefono t = new Telefono();
+        c.setCodigo(codigo);
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setCorreo(correo);
+        p.setFnacimiento(fnacimiento);
+        t.setTipo(tipoTel);
+        t.setNumero(numeroTel);
+        telefonoFacade.create(t);
+        personaFacade.create(p);
+        clienteFacade.create(c);
     }
 
     public void update() {
