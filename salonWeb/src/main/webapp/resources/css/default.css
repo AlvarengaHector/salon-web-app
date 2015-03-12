@@ -27,3 +27,13 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+/*mycss*/
+
+.main-menu{
+    background: #000;
+    border:0;
+}
+.ui-menuitem{
+    color: red !important;
+}

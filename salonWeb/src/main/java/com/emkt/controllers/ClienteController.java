@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -27,7 +29,7 @@ public class ClienteController implements Serializable {
     private List<Cliente> items = null;
     private Cliente selected;
     // mis variables
-    private Integer codigo;
+    private String codigo;
     private String nombre;
     private String apellido;
     private String correo;
@@ -46,11 +48,11 @@ public class ClienteController implements Serializable {
         this.selected = selected;
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -154,8 +156,13 @@ public class ClienteController implements Serializable {
         
         c.setCodigo(codigo);
         c.setFkPersona(p);
-        clienteFacade.create(c);     
+        clienteFacade.create(c); 
         
+        infoCreated();
+        
+    }
+    public void infoCreated() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "El registro se creó satisfactoriamente."));
     }
 
     public void update() {

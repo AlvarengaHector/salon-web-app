@@ -7,6 +7,7 @@ package com.emkt.entityclasses;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c"),
     @NamedQuery(name = "Cita.findByIdCita", query = "SELECT c FROM Cita c WHERE c.idCita = :idCita"),
-    @NamedQuery(name = "Cita.findByEstado", query = "SELECT c FROM Cita c WHERE c.estado = :estado")})
+    @NamedQuery(name = "Cita.findByEstado", query = "SELECT c FROM Cita c WHERE c.estado = :estado"),
+    @NamedQuery(name = "Cita.findByCitaFechaCreacion", query = "SELECT c FROM Cita c WHERE c.citaFechaCreacion = :citaFechaCreacion")})
 public class Cita implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +52,9 @@ public class Cita implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "estado")
     private String estado;
+    @Column(name = "cita_fecha_creacion")
+    @Temporal(TemporalType.TIME)
+    private Date citaFechaCreacion;
     @JoinColumn(name = "fk_usuario", referencedColumnName = "id_us")
     @ManyToOne(optional = false)
     private Usuario fkUsuario;
@@ -86,6 +93,14 @@ public class Cita implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Date getCitaFechaCreacion() {
+        return citaFechaCreacion;
+    }
+
+    public void setCitaFechaCreacion(Date citaFechaCreacion) {
+        this.citaFechaCreacion = citaFechaCreacion;
     }
 
     public Usuario getFkUsuario() {

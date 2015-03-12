@@ -20,7 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -42,10 +42,9 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_cliente")
     private Integer idCliente;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 100)
     @Column(name = "codigo")
-    private int codigo;
+    private String codigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkCliente")
     private Collection<Cita> citaCollection;
     @JoinColumn(name = "fk_persona", referencedColumnName = "id_per")
@@ -59,11 +58,6 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, int codigo) {
-        this.idCliente = idCliente;
-        this.codigo = codigo;
-    }
-
     public Integer getIdCliente() {
         return idCliente;
     }
@@ -72,11 +66,11 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
