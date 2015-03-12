@@ -134,6 +134,7 @@ public class ClienteController implements Serializable {
     
 
     public void create() {
+        
         Telefono t = new Telefono();
         
         t.setNumero(numeroTel);
@@ -142,6 +143,7 @@ public class ClienteController implements Serializable {
         
         Persona p = new Persona();
         
+        p.setFkTelefono(t);
         p.setNombre(nombre);
         p.setApellido(apellido);
         p.setCorreo(correo);
@@ -151,7 +153,8 @@ public class ClienteController implements Serializable {
         Cliente c = new Cliente();
         
         c.setCodigo(codigo);
-        clienteFacade.create(c);        
+        c.setFkPersona(p);
+        clienteFacade.create(c);     
         
     }
 

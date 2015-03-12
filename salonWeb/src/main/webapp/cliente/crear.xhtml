@@ -18,22 +18,22 @@
                         <h:outputLabel value="Código" for="codigo"/>
                         <p:inputText value="#{clienteController.codigo}" id="codigo"/>
                         <h:outputLabel value="Nombre" for="nombre"/>
-                        <p:inputText value="#{clienteController.nombre}" id="nombre"/>
+                        <p:inputText value="#{personaController.nombre}" id="nombre"/>
                         <h:outputLabel value="Apellido" for="apellido"/>
-                        <p:inputText value="#{clienteController.apellido}" id="apellido"/>
+                        <p:inputText value="#{personaController.apellido}" id="apellido"/>
                         <h:outputLabel value="Fecha de Nacimiento" for="fnacimiento"/>
-                        <p:calendar id="fnacimiento" value="#{clienteController.fnacimiento}" />
+                        <p:calendar id="fnacimiento" value="#{personaController.fnacimiento}" />
                         <h:outputLabel value="Tipo de Teléfono" for="tipoTelefono"/>
-                        <p:selectOneMenu value="#{clienteController.tipoTel}" id="tipoTelefono">
+                        <p:selectOneMenu value="#{telefonoController.tipoTel}" id="tipoTelefono">
                             <f:selectItem itemLabel="" itemValue=""/>
                             <f:selectItem itemLabel="Fijo" itemValue="fijo"/>
                             <f:selectItem itemLabel="Movil" itemValue="movil"/>
                             <f:selectItem itemLabel="Oficina" itemValue="oficina"/>
                         </p:selectOneMenu>
                         <h:outputLabel value="Teléfono" for="telefono"/>
-                        <p:inputText value="#{clienteController.numeroTel}" id="telefono" />
+                        <p:inputText value="#{telefonoController.numeroTel}" id="telefono" />
                         <h:outputLabel value="Correo" for="correo"/>
-                        <p:inputText value="#{clienteController.correo}" id="correo" />
+                        <p:inputText value="#{personaController.correo}" id="correo" />
                         <h:panelGroup/>
                         <p:commandButton action="#{clienteController.create}" value="Crear" update="display"/>
                     </h:panelGrid>
