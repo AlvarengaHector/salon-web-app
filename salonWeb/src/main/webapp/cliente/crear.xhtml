@@ -13,28 +13,33 @@
         </ui:define>
 
         <ui:define name="content">
+            <p:tooltip />
             <h:form id="form-cliente" >
-                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
-                
                 <h:panelGroup id="display">  
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Nombre" for="nombre"/>
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <h:outputLabel value="Nombres: " for="nombre"/>
                         <p:inputText value="#{clienteController.nombre}" id="nombre" required="true" />
-                        <h:outputLabel value="Apellido" for="apellido"/>
-                        <p:inputText value="#{clienteController.apellido}" id="apellido"/>
-                        <h:outputLabel value="Fecha de Nacimiento" for="fnacimiento"/>
+                        <p:message for="nombre" display="tooltip" />
+                        <h:outputLabel value="Apellidos: " for="apellido"/>
+                        <p:inputText value="#{clienteController.apellido}" id="apellido" required="true" />
+                        <p:message for="apellido" display="tooltip" />
+                        <h:outputLabel value="Fecha de Nacimiento: " for="fnacimiento"/>
                         <p:calendar id="fnacimiento" value="#{clienteController.fnacimiento}" />
-                        <h:outputLabel value="Tipo de Teléfono" for="tipoTelefono"/>
-                        <p:selectOneMenu value="#{clienteController.tipoTel}" id="tipoTelefono">
+                        <p:message for="fnacimiento" display="tooltip" />
+                        <h:outputLabel value="Tipo de Teléfono: " for="tipoTelefono"/>
+                        <p:selectOneMenu value="#{clienteController.tipoTel}" id="tipoTelefono" required="true" style="width: 155px">
                             <f:selectItem itemLabel="" itemValue=""/>
                             <f:selectItem itemLabel="Fijo" itemValue="fijo"/>
                             <f:selectItem itemLabel="Movil" itemValue="movil"/>
                             <f:selectItem itemLabel="Oficina" itemValue="oficina"/>
                         </p:selectOneMenu>
-                        <h:outputLabel value="Teléfono" for="telefono"/>
-                        <p:inputText value="#{clienteController.numeroTel}" id="telefono" />
-                        <h:outputLabel value="Correo" for="correo"/>
+                        <p:message for="tipoTelefono" display="tooltip" />
+                        <h:outputLabel value="Número de Teléfono: " for="telefono"/>
+                        <p:inputText value="#{clienteController.numeroTel}" id="telefono" required="true" />
+                        <p:message for="telefono" display="tooltip" />
+                        <h:outputLabel value="Correo electrónico: " for="correo"/>
                         <p:inputText value="#{clienteController.correo}" id="correo" />
+                        <p:message for="correo" display="tooltip" />
                         <h:panelGroup/>
                         <p:commandButton actionListener="#{clienteController.create}" value="Crear" update="display"/>
                     </h:panelGrid>
