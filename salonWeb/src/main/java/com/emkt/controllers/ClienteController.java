@@ -15,6 +15,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 @Named("clienteController")
 @ViewScoped
@@ -164,13 +166,85 @@ public class ClienteController implements Serializable {
     public void infoCreated() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "El registro se creó satisfactoriamente."));
     }
-
+    
     public void update() {
-        
+        Telefono t = new Telefono();
+
+        t.setNumero(numeroTel);
+        telefonoFacade.edit(t);
+
+        Persona p = new Persona();
+
+        p.setFkTelefono(t);
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setCorreo(correo);
+        p.setFnacimiento(fnacimiento);
+        personaFacade.edit(p);
+
+        Cliente c = new Cliente();
+
+        c.setCodigo(codigo);
+        c.setFkPersona(p);
+        clienteFacade.edit(c);
     }
 
     public void destroy() {
         
+    }
+    
+    public void onRowEdit(RowEditEvent event) {
+        // Teléfono
+        tipoTel = ((Telefono) event.getObject()).getTipo();
+        numeroTel = ((Telefono) event.getObject()).getNumero();
+        // Persona
+        nombre = ((Persona) event.getObject()).getNombre();
+        apellido = ((Persona) event.getObject()).getApellido();
+        correo = ((Persona) event.getObject()).getCorreo();
+        fnacimiento = ((Persona) event.getObject()).getFnacimiento();
+        // Cliente
+        codigo = ((Cliente) event.getObject()).getCodigo();
+        
+        Telefono t = new Telefono();
+
+        t.setTipo(tipoTel);
+        t.setNumero(numeroTel);
+        telefonoFacade.edit(t);
+
+        Persona p = new Persona();
+
+        p.setFkTelefono(t);
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setCorreo(correo);
+        p.setFnacimiento(fnacimiento);
+        personaFacade.edit(p);
+
+        Cliente c = new Cliente();
+
+        c.setCodigo(codigo);
+        c.setFkPersona(p);
+        clienteFacade.edit(c);
+
+        FacesMessage msg = new FacesMessage("Cliente Edited", ((Cliente) event.getObject()).getCodigo());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Cliente) event.getObject()).getCodigo());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+        
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+
+        if (newValue != null && !newValue.equals(oldValue)) {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                
+        }
     }
 
     public List<Cliente> getItems() {
